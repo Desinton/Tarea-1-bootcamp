@@ -1,11 +1,3 @@
-echo "# Tarea-1-bootcamp" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/Desinton/Tarea-1-bootcamp.git
-git push -u origin main
-
 public class Bootcamp {
     public static int suma (int a, int b, int c){
         int resultado = a + b + c;
