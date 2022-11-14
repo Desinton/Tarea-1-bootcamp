@@ -1,0 +1,21 @@
+public class JavaBasic {
+
+    public static void main(String[] args) {
+        
+        int entero = 3;
+        long largo = 100;
+        double decimal = 2.5;
+        char letra = 'a';
+        String frase = "Buenos días";
+        boolean boleano = true;
+        
+        System.out.println(entero);
+        System.out.println(largo);
+        System.out.println(decimal);
+        System.out.println(letra);
+        System.out.println(frase);
+        System.out.println(boleano);
+        
+    }
+    
+}
