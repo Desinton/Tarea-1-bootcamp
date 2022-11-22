@@ -1,0 +1,17 @@
+public class BootcampTarea {
+
+    
+    public static void main(String[] args) {
+        
+        double preciofinal = precioConIva (24.95);
+        
+        System.out.println(preciofinal);
+    }
+    
+    
+    static double precioConIva(double precio){
+        double iva = precio * 0.21;
+        return precio + iva;
+    }
+    
+}
