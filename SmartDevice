@@ -1,0 +1,88 @@
+public class BootcampTarea {
+
+    
+    public static void main(String[] args) {
+        
+        SmartDevice central = new SmartDevice("Aplee", true, true, 2);
+        
+        SmartPhone movil = new SmartPhone (10, 25, "plateado", "Iphone", true, true, 1);
+        
+        SmartWatch reloj =new SmartWatch (25, "cuero", "Aplee Watch", false, true, 1);
+        
+        System.out.println(central.toString());
+        System.out.println(movil.toString());
+        System.out.println(reloj.toString());
+        
+    }
+    
+    public static class SmartDevice {
+      String marca;
+      boolean bluetooh;
+      boolean internet;
+      int dispositivosVinculados;
+
+        public SmartDevice() {
+        }
+
+        public SmartDevice(String marca, boolean bluetooh, boolean internet, int dispositivosVinculados) {
+            this.marca = marca;
+            this.bluetooh = bluetooh;
+            this.internet = internet;
+            this.dispositivosVinculados = dispositivosVinculados;
+        }
+
+        @Override
+        public String toString() {
+            return "SmartDevice{" + "marca=" + marca + ", bluetooh=" + bluetooh + ", internet=" + internet + ", dispositivosVinculados=" + dispositivosVinculados + '}';
+        }
+      
+       
+    
+    
+    }
+    
+    public static class SmartPhone extends SmartDevice {
+        double cmAncho;
+        double cmLargo;
+        String color;
+
+        public SmartPhone() {
+        }
+
+        public SmartPhone(double cmAncho, double cmLargo, String color, String marca, boolean bluetooh, boolean internet, int dispositivosVinculados) {
+            super(marca, bluetooh, internet, dispositivosVinculados);
+            this.cmAncho = cmAncho;
+            this.cmLargo = cmLargo;
+            this.color = color;
+        }
+
+        @Override
+        public String toString() {
+            return "SmartPhone{"+ "marca=" + marca + ", bluetooh=" + bluetooh + ", internet=" + internet + ", dispositivosVinculados=" + dispositivosVinculados + ", cmAncho=" + cmAncho + ", cmLargo=" + cmLargo + ", color=" + color + '}';
+        }
+        
+        
+        
+    }
+    
+    public static class SmartWatch extends SmartDevice {
+        double tamañocm2;
+        String tipoCorrea;
+
+        public SmartWatch() {
+        }
+
+        public SmartWatch(double tamañocm2, String tipoCorrea, String marca, boolean bluetooh, boolean internet, int dispositivosVinculados) {
+            super(marca, bluetooh, internet, dispositivosVinculados);
+            this.tamañocm2 = tamañocm2;
+            this.tipoCorrea = tipoCorrea;
+        }
+
+        @Override
+        public String toString() {
+            return "SmartWhatch{"+ "marca=" + marca + ", bluetooh=" + bluetooh + ", internet=" + internet + ", dispositivosVinculados=" + dispositivosVinculados + ", tamañocm2=" + tamañocm2 + ", tipoCorrea=" + tipoCorrea + '}';
+        }
+        
+        
+    }
+}
