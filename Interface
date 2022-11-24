@@ -1,0 +1,44 @@
+public interface CocheCRUD {
+    
+    void save ();
+    void findAll ();
+    void delete();
+    
+}
+
+------------------------------------------
+
+public class CocheCRUDImpl implements CocheCRUD{
+
+    @Override
+    public void save() {
+        
+        System.out.println("Metodo Save");
+    }
+
+    @Override
+    public void findAll() {
+        System.out.println("Metodo Find All");
+    }
+
+    @Override
+    public void delete() {
+       System.out.println("Metodo Delete"); 
+    }
+    
+}
+
+---------------------------------------------
+
+public class BootcampTarea {
+  
+    public static void main(String[] args) {
+        
+        CocheCRUDImpl coche = new CocheCRUDImpl();
+        
+        coche.save();
+        coche.findAll();
+        coche.delete();
+        
+    }
+}
