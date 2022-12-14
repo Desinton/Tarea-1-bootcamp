@@ -1,0 +1,171 @@
+package bootcamptarea;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+public class BootcampTarea {
+
+    
+    
+    public static void main(String[] args) {
+        
+        
+        //1.Dada la funcion // public static String reverse (String texto){}
+        //Escribe el código que devuelva una cadena al revés. Por ejemplo, la cadena "hola mundo", debe retornar "odnum aloh".
+        String imp = reverse ("hola mundo");
+        System.out.println(imp);
+        
+        //2.Crea un array unidimensional de Strings y recórrelo, mostrando únicamente sus valores.
+        
+        String [] array  = {"Hoy", "Mañana", "Pasado"};
+        
+        for(String arrays: array){
+            System.out.println(arrays);
+        }
+        
+        //3.Crea un array bidimensional de enteros y recórrelo, mostrando la posición y el valor de cada elemento en ambas dimensiones.
+        int[][] matriz = new int [2][2];
+        
+        for (int i=0;i<matriz.length;i++){
+            for(int j=0;j<matriz[0].length;j++){
+                System.out.println(matriz[i][j]);
+            }
+        }
+        
+        //4.Crea un "Vector" del tipo de dato que prefieras, y añádele 5 elementos. Elimina el 2o y 3er elemento y muestra el resultado final.
+        //NOTA:Java Ya ha descatalogado la clase Vector, por lo que este ejercicio lo hago con los metodos que he encontrado por
+        //internet de la clase Vector, sin poder implementarlos realmente y ver si funcionan
+        /*
+        Vector (String) vector = new Vector();
+        vector.addElement ("uno");
+        vector.addElement ("dos");
+        vector.addElement ("tres");
+        vector.addElement ("cuatro");
+        vector.addElement ("cinco");
+        
+        vector.removeElementAt(1);
+        removeElementAt(2);
+        
+        for(String numero : vector){
+            System.out.println(numero);
+        }
+        */
+        //5.Indica cuál es el problema de utilizar un Vector con la capacidad por defecto si tuviésemos 1000 elementos para ser añadidos al mismo.
+        
+        //Cada vez que los Vectores amplian su capacidad la duplica (capacidadVector * 2)
+        //Tendría que ampliar su capacidad 7 veces y quedaria espacio sin rellenar: ademas que la proxima vez que aumnetase de tamaño estariamos provocando una carga innecesaria en memoria
+        //Por lo que sería mejor utilizar un ArrayList que no pierde tanto espacio de memoria ya que solo aumenta en 1/2 su capacidad.
+        
+        //6.Crea un ArrayList de tipo String, con 4 elementos. Cópialo en una LinkedList. Recorre ambos mostrando únicamente el valor de cada elemento.
+        
+        ArrayList <String> lista = new ArrayList <String>();
+        lista.add("Juana");
+        lista.add("Antonia");
+        lista.add("Bernarda");
+        lista.add("Carmela");
+        
+        LinkedList <String> listaLink = new LinkedList <String> (lista);
+        
+        for(String nombre : listaLink){
+            System.out.println(nombre);
+        }
+        
+        //7.Crea un ArrayList de tipo int, y, utilizando un bucle rellénalo con elementos 1..10. 
+        //A continuación, con otro bucle, recórrelo y elimina los numeros pares. Por último, vuelve a recorrerlo y muestra el ArrayList final. 
+        //Si te atreves, puedes hacerlo en menos pasos, siempre y cuando cumplas el primer "for" de relleno.
+        
+        ArrayList <Integer> numeros = new ArrayList ();
+        
+        for(int i = 1; i<=10; i++){
+            numeros.add(i);
+        }
+        
+        for(int i=0; i<numeros.size(); i++){
+            if (numeros.get(i) % 2 == 0){
+                numeros.remove(i);
+            }
+        }
+        
+        System.out.println(numeros);
+        
+         
+        //8. será capturada por su llamante (desde "main", por ejemplo). 
+        //Si se dispara la excepción, mostraremos el mensaje "Esto no puede hacerse". 
+        //Finalmente, mostraremos en cualquier caso: "Demo de código".
+        
+        try{
+            DivideXCero (5,0);
+        }catch (ArithmeticException e){
+            System.out.println("Esto no puede hacerse");
+        }finally{
+            System.out.println("Demo de código");
+        }
+        
+        
+        //9.Utilizando InputStream y PrintStream, crea una función que reciba dos parámetros: "fileIn" y "fileOut". 
+        //La tarea de la función será realizar la copia del fichero dado en el parámetro "fileIn" al fichero dado en "fileOut".
+        
+        try{
+        InputStream fileIn = new FileInputStream ("prueba.txt");
+        PrintStream fileOut = new PrintStream ("destino.txt");
+        
+        HacerCopia (fileIn, fileOut);
+        }catch (Exception e){
+            System.out.println(e.getLocalizedMessage());
+        }
+        
+        
+    }
+    
+    
+    //1.Creo un metodo donde recorro el String empezando por el final y voy guardando en texto leido de fin a principio en un nuevo String
+    public static String reverse (String texto){
+        
+        String reves = "";
+        
+        for (int i=texto.length()-1; i>=0; i--){
+           reves = reves + texto.charAt(i);
+        }
+        
+        return reves;
+        
+    }
+    
+    //8.Crea una función DividePorCero. Esta, debe generar una excepción ("throws") a su llamante del tipo ArithmeticException
+    public static int DivideXCero (int a, int b) throws ArithmeticException{
+        int resultado = 0;
+        
+        try{
+            resultado = a/b;
+        }catch (ArithmeticException e){
+            throw new ArithmeticException();
+        }
+        
+        return resultado;
+    }
+    
+    //9.Utilizando InputStream y PrintStream, crea una función que reciba dos parámetros: "fileIn" y "fileOut". 
+    //La tarea de la función será realizar la copia del fichero dado en el parámetro "fileIn" al fichero dado en "fileOut".
+    
+    public static void HacerCopia (InputStream fileIn, PrintStream fileOut) throws FileNotFoundException, IOException{
+        try{
+            
+            InputStream in = fileIn;
+            byte [] datos = in.readAllBytes();
+            in.close();
+            
+            PrintStream out = fileOut;
+            out.write(datos);
+            out.close();
+        }catch (FileNotFoundException e){
+            throw new FileNotFoundException(); 
+        }
+    }
+
+
+}
